@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom"
 import { useLogout } from "../hooks/useLogout"
-import { MouseEventHandler, useEffect } from "react"
+import { MouseEventHandler } from "react"
 import useGetHost from "../hooks/useGetHost"
-import useGetUser from "../hooks/useGetUser"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { User } from "../contexts/AuthContext"
 
 const NavBar: React.FC = () => {
     const host = useGetHost()
     const { logout } = useLogout()
-    const { getUser } = useGetUser()
-    const { authState, authDispatch } = useAuthContext()
+    const { authState } = useAuthContext()
     const { user } = authState
 
     const handleLogout: MouseEventHandler<HTMLButtonElement> = () => {

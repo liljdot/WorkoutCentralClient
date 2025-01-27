@@ -25,7 +25,7 @@ export const UseLogin = (): {error: ErrorProps, isLoading: boolean, login: any} 
             })
             .then(res => !res.ok ? rejectJson(res) : res.json())
             .then(json => resolve(json.data))
-            .catch(e => {setError(e); setIsLoading(false)})
+            .catch(e => {setError(e); setIsLoading(false); reject(e)})
         })
     }
 

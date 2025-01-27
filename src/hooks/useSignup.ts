@@ -17,7 +17,7 @@ const useSignup = (): { error: { status: number, message: string, data?: any } |
             })
                 .then(response => !response.ok ? rejectJson(response) : response.json())
                 .then(json => { setIsLoading(false); resolve(json.data.token) })
-                .catch(e => { setError(e); setIsLoading(false) })
+                .catch(e => { setError(e); setIsLoading(false); reject(e) })
         })
     }
 
