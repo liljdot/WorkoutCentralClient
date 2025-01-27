@@ -7,7 +7,7 @@ import { allWorkoutsContext } from './contexts/allWorkoutsContext'
 import Workout from './pages/Workout'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
-import RequireAuth from './auth/requireAuth'
+import RequireAuth from './auth/RequireAuth'
 
 function App() {
   const [workouts, workoutsDispatch] = useReducer(workoutsReducer, workoutsInitialState)
