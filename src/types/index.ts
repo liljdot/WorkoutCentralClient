@@ -1,0 +1,1 @@
+export type { Workout, NewWorkout, ErrorREsponse } from './workoutTypes'
