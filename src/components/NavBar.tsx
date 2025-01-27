@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
     const { user } = authState
 
     const handleLogout: MouseEventHandler<HTMLButtonElement> = () => {
-        logout(`http://${host}/api/user/logout`)
+        logout(`https://${host}/api/user/logout`)
     }
 
 

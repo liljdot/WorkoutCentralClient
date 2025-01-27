@@ -18,7 +18,7 @@ const RequireAuth: React.FC = () => {
     useEffect(() => {
         let userResponse: User
 
-        getUser(`http://${host}/api/user`)
+        getUser(`https://${host}/api/user`)
             .then(res => userResponse = res.data.user)
             .catch(e => { console.log(e.message); userResponse = e.data?.user })
             .finally(() => {
@@ -29,7 +29,7 @@ const RequireAuth: React.FC = () => {
                 }
 
                 if (user.id != userResponse?.id) {
-                    logout(`http://${host}/api/user/logout`)
+                    logout(`https://${host}/api/user/logout`)
                     setIsLoading(false)
                     return
                 }

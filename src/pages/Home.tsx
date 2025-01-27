@@ -25,12 +25,12 @@ const Home: React.FC = () => {
     const [workoutFormState, workoutFormDispatch] = useReducer(workoutFormReducer, workoutFormInitialState)
 
     useEffect(() => {
-        fetch(`http://${host}/api/workouts`, {
+        fetch(`https://${host}/api/workouts`, {
             credentials: "include"
         })
             .then((res: Response) => !res.ok ? rejectJson(res) : res.json())
             .then((val: Workout[]) => workoutsDispatch({type: "SET_ALL_WORKOUTS", payload: val}))
-            .catch((e: ErrorResponse) => {e.status != 401 ? setWorkoutsError(true) : logout(`http://${host}/api/user/logout`)})
+            .catch((e: ErrorResponse) => {e.status != 401 ? setWorkoutsError(true) : logout(`https://${host}/api/user/logout`)})
     }, [])
 
     return (

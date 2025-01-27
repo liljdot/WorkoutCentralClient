@@ -17,7 +17,7 @@ const Signup: React.FC = () => {
         const { email, password } = data
 
         console.log(email, password)
-        signup(email, password, `http://${host}/api/user/signup`)
+        signup(email, password, `https://${host}/api/user/signup`)
             .then((token: string) => console.log(token))
             .catch((e: any) => console.log(e))
 

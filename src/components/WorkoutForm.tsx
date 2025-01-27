@@ -42,7 +42,7 @@ const WorkoutForm: React.FC<Props> = ({ }) => {
         }
 
         try {
-            const res = await fetch(`http://${host}/api/workouts`, {
+            const res = await fetch(`https://${host}/api/workouts`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -54,7 +54,7 @@ const WorkoutForm: React.FC<Props> = ({ }) => {
             if (!res.ok) {
                 const errorRes = await res.json()
                 if (errorRes.status == 401) {
-                    logout(`http://${host}/api/user/logout`)
+                    logout(`https://${host}/api/user/logout`)
                 }
                 setError(errorRes)
                 return

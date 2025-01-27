@@ -26,7 +26,7 @@ const AuthContextProvider: React.FC<Props> = ({ children }) => {
     useEffect(() => {
         let userResponse: User = null
 
-        getUser(`http://${host}/api/user`)
+        getUser(`https://${host}/api/user`)
             .then(res => userResponse = res.data.user)
             .catch(e => { console.log(e.message); userResponse = e.data?.user })
             .finally(() => {authDispatch({ type: "SET_USER", payload: userResponse })})

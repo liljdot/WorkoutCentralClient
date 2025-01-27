@@ -21,7 +21,7 @@ const Login: React.FC = () => {
 
         const { email, password } = data
 
-        login(email, password, `http://${host}/api/user/login`)
+        login(email, password, `https://${host}/api/user/login`)
             .then((data: {token: string, user: User}) => {console.log(data); authDispatch({type: "SET_USER", payload: data.user})})
             .then(() => navigate("/"))
             .catch((e: any) => console.log(e))

@@ -51,7 +51,7 @@ const Workout: React.FC = () => {
         const fetchWorkout: () => void = async () => {
             try {
                 setIsLoading(true)
-                const res = await fetch(`http://${host}/api/workouts/${id}`, {
+                const res = await fetch(`https://${host}/api/workouts/${id}`, {
                     credentials: "include"
                 })
 
