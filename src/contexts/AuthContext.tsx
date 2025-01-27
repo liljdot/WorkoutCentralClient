@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { AuthActions, authInitialState, authReducer, AuthState } from "../reducers/authReducer";
 import useGetHost from "../hooks/useGetHost";
-import { useLogout } from "../hooks/useLogout";
 import useGetUser from "../hooks/useGetUser";
 
 export type User = {

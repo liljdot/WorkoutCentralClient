@@ -7,14 +7,12 @@ import { Link, useNavigate } from "react-router-dom"
 //date-fns
 import { formatDistanceToNow } from "date-fns"
 import useDeleteWorkout from "../hooks/useDeleteWorkout"
-import useGetHost from "../hooks/useGetHost"
 
 interface Props {
     workout: Workout
 }
 
 const WorkoutDetail: React.FC<Props> = ({ workout }) => {
-    const host = useGetHost()
 
     const workoutsContext = useContext(allWorkoutsContext)
     if (!workoutsContext) {

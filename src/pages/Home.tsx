@@ -7,8 +7,7 @@ import { BSModal } from "../components/Modal"
 import { workoutFormInitialState, workoutFormReducer } from "../reducers/workoutFormReducer"
 import { workoutContext } from "../contexts/workoutContext"
 import { allWorkoutsContext } from "../contexts/allWorkoutsContext"
-import { useAuthContext } from "../hooks/useAuthContext"
-import { ErrorResponse, useNavigate } from "react-router-dom"
+import { ErrorResponse } from "react-router-dom"
 import { rejectJson } from "../hooks/rejectJson"
 import { useLogout } from "../hooks/useLogout"
 import useGetHost from "../hooks/useGetHost"
@@ -16,8 +15,6 @@ import useGetHost from "../hooks/useGetHost"
 const Home: React.FC = () => {
     const host = useGetHost()
     const context = useContext(allWorkoutsContext)
-    const {authState, authDispatch} = useAuthContext()
-    const {user} = authState
     const {logout} = useLogout()
     if (!context) {
         return

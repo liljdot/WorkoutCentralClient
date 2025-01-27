@@ -7,7 +7,7 @@ const Signup: React.FC = () => {
 
     const [email, setEmail] = useState<string>("")
     const [password, SetPassword] = useState<string>("")
-    const { error: signupError, isLoading: signupIsLoading, signup } = useSignup()
+    const { error: signupError, signup } = useSignup()
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault()
