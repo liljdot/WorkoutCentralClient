@@ -24,7 +24,7 @@ export const useLogout = (): {error: ErrorProps, logout: (url: string) => Promis
             })
             .then(res => !res.ok? rejectJson(res) : (() => {authDispatch({type: "LOGOUT", payload: ""}); return res.json()})())
             .then(json => resolve(json))
-            .catch(e => setError(e))
+            .catch(e => {setError(e); reject(e)})
         })
     }
 
