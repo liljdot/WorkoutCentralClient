@@ -8,7 +8,7 @@ import { Outlet, Navigate } from "react-router-dom"
 
 
 const RequireAuth: React.FC = () => {
-    const { getUser } = useGetUser()
+    const { getUser } = useGetUser() 
     const host = useGetHost()
     const { authState, authDispatch } = useAuthContext()
     const { user } = authState
