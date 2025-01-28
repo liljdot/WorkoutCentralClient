@@ -3,7 +3,7 @@ const useGetHost: () => string = () => {
     // host = host.slice(0, host.length - 4)
     // host = host + 4000
 
-    return "workout-central-server-k2sr4c3o2-jehus-projects-79647ffa.vercel.app"
+    return "workout-central-server.vercel.app"
 }
 
 export default useGetHost
