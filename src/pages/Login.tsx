@@ -4,14 +4,20 @@ import useGetHost from "../hooks/useGetHost"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { User } from "../contexts/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { LinearProgress, ThemeProvider } from "@mui/material"
+import { useCustomMUIThemeContext } from "../hooks/useCustomMUIThemeContext"
 
 const Login: React.FC = () => {
     const host = useGetHost()
-    const {authDispatch} = useAuthContext()
+    const { authDispatch } = useAuthContext()
     const navigate = useNavigate()
     const [email, setEmail] = useState<string>("")
     const [password, SetPassword] = useState<string>("")
     const { error: loginError, isLoading: loginIsLoading, login } = UseLogin()
+
+    //materialUI theme
+
+    const theme = useCustomMUIThemeContext()
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -22,25 +28,35 @@ const Login: React.FC = () => {
         const { email, password } = data
 
         login(email, password, `https://${host}/api/user/login`)
-            .then((data: {token: string, user: User}) => {console.log(data); authDispatch({type: "SET_USER", payload: data.user})})
+            .then((data: { token: string, user: User }) => { console.log(data); authDispatch({ type: "SET_USER", payload: data.user }) })
             .then(() => navigate("/"))
             .catch((e: any) => console.log(e))
     }
 
     return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h3>Login</h3>
+        <ThemeProvider theme={theme}>
+            <div className="formContainer">
+                <form className="login" onSubmit={handleSubmit}>
+                    <h3>Login</h3>
 
-            <label>Email:</label>
-            <input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <label>Email:</label>
+                    <input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
 
-            <label>Password:</label>
-            <input name="password" type="password" value={password} onChange={e => SetPassword(e.target.value)} />
+                    <label>Password:</label>
+                    <input name="password" type="password" value={password} onChange={e => SetPassword(e.target.value)} />
 
-            <button type="submit" disabled={loginIsLoading}>Login</button>
+                    <button type="submit" disabled={loginIsLoading}>Login</button>
 
-            {loginError && <div className="error">{loginError.message}</div>}
-        </form>
+                    {(loginError && !loginIsLoading) && <div className="error">{loginError.message}</div>}
+
+
+                    <div className="loaderContainer">
+                        {loginIsLoading && <LinearProgress color="primary" sx={{height: 1.5}}/>}
+                    </div>
+                </form>
+            </div>
+
+        </ThemeProvider>
     )
 }
 

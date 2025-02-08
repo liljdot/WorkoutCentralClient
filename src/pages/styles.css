@@ -12,11 +12,27 @@
 }
 
 /* auth forms */
-form.signup,
-form.login {
+form.signup, form.login {
+
+
+    padding: 0;
+
+    border-radius: 4px;
+    
+}
+
+.formContainer {
     max-width: 400px;
     margin: 40px auto;
-    padding: 20px;
     background: #000;
-    border-radius: 4px;
+    position: relative;
+    padding: 20px;
+}
+
+.loaderContainer {
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }

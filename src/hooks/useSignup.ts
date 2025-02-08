@@ -7,6 +7,7 @@ const useSignup = (): { error: { status: number, message: string, data?: any } |
 
     const signup = (email: string, password: string, url: string): any => {
         return new Promise((resolve, reject) => {
+            setIsLoading(true)
             fetch(url, {
                 method: "POST",
                 headers: {

@@ -1,13 +1,20 @@
 import { useState } from "react"
 import useSignup from "../hooks/useSignup"
 import useGetHost from "../hooks/useGetHost"
+import { useCustomMUIThemeContext } from "../hooks/useCustomMUIThemeContext"
+import { ThemeProvider } from "@emotion/react"
+import { LinearProgress } from "@mui/material"
 
 const Signup: React.FC = () => {
     const host = useGetHost()
 
     const [email, setEmail] = useState<string>("")
     const [password, SetPassword] = useState<string>("")
-    const { error: signupError, signup } = useSignup()
+    const { error: signupError, signup, isLoading } = useSignup()
+
+    //materialUI theme
+
+    const theme = useCustomMUIThemeContext()
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault()
@@ -24,20 +31,28 @@ const Signup: React.FC = () => {
     }
 
     return (
-        <form className="signup" onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
+        <ThemeProvider theme={theme}>
+            <div className="formContainer">
+                <form className="signup" onSubmit={handleSubmit}>
+                    <h3>Sign Up</h3>
 
-            <label>Email:</label>
-            <input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <label>Email:</label>
+                    <input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
 
-            <label>Password:</label>
-            <input name="password" type="password" value={password} onChange={e => SetPassword(e.target.value)} />
+                    <label>Password:</label>
+                    <input name="password" type="password" value={password} onChange={e => SetPassword(e.target.value)} />
 
-            <button type="submit">Sign Up</button>
+                    <button type="submit">Sign Up</button>
 
-            {signupError && <div className="error">{signupError.message}
-            </div>}
-        </form>
+                    {(signupError && !isLoading) && <div className="error">{signupError.message}
+                    </div>}
+
+                    <div className="loaderContainer">
+                        {isLoading && <LinearProgress color="primary" sx={{ height: 1.5 }} />}
+                    </div>
+                </form>
+            </div>
+        </ThemeProvider>
     )
 }
 
