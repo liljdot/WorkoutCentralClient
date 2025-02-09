@@ -1,8 +1,6 @@
 import { useState } from "react"
 import useSignup from "../hooks/useSignup"
 import useGetHost from "../hooks/useGetHost"
-import { useCustomMUIThemeContext } from "../hooks/useCustomMUIThemeContext"
-import { ThemeProvider } from "@emotion/react"
 import { LinearProgress } from "@mui/material"
 
 const Signup: React.FC = () => {
@@ -11,10 +9,6 @@ const Signup: React.FC = () => {
     const [email, setEmail] = useState<string>("")
     const [password, SetPassword] = useState<string>("")
     const { error: signupError, signup, isLoading } = useSignup()
-
-    //materialUI theme
-
-    const theme = useCustomMUIThemeContext()
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault()
@@ -31,7 +25,6 @@ const Signup: React.FC = () => {
     }
 
     return (
-        <ThemeProvider theme={theme}>
             <div className="formContainer">
                 <form className="signup" onSubmit={handleSubmit}>
                     <h3>Sign Up</h3>
@@ -52,7 +45,6 @@ const Signup: React.FC = () => {
                     </div>
                 </form>
             </div>
-        </ThemeProvider>
     )
 }
 

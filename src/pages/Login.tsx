@@ -4,8 +4,7 @@ import useGetHost from "../hooks/useGetHost"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { User } from "../contexts/AuthContext"
 import { useNavigate } from "react-router-dom"
-import { LinearProgress, ThemeProvider } from "@mui/material"
-import { useCustomMUIThemeContext } from "../hooks/useCustomMUIThemeContext"
+import { LinearProgress } from "@mui/material"
 
 const Login: React.FC = () => {
     const host = useGetHost()
@@ -15,9 +14,6 @@ const Login: React.FC = () => {
     const [password, SetPassword] = useState<string>("")
     const { error: loginError, isLoading: loginIsLoading, login } = UseLogin()
 
-    //materialUI theme
-
-    const theme = useCustomMUIThemeContext()
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -34,7 +30,6 @@ const Login: React.FC = () => {
     }
 
     return (
-        <ThemeProvider theme={theme}>
             <div className="formContainer">
                 <form className="login" onSubmit={handleSubmit}>
                     <h3>Login</h3>
@@ -55,8 +50,6 @@ const Login: React.FC = () => {
                     </div>
                 </form>
             </div>
-
-        </ThemeProvider>
     )
 }
 
